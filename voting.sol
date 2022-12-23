@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.5;
-// written for Solidity version 0.7.5 and above that doesn't break 
-functionality
+pragma solidity ^0.8.17;
+// written for Solidity version 0.7.5 and above that doesn't break functionality
 contract Voting {
 // an event that is called whenever a Candidate is added so the frontend could
 // appropriately display the candidate with the right element id (it is used
@@ -18,8 +17,7 @@ _;
 struct Voter {
 uint candidateIDVote;
 bool isAuthorized; // this flag will help authorization of voter
-bool hasVoted; // this flag will help to keep track of 1 voter - 1 
-vote
+bool hasVoted; // this flag will help to keep track of 1 voter - 1  vote
 }
 // describes a Candidate
 struct Candidate {
@@ -27,13 +25,12 @@ string name;
 string party;
 uint noOFVotes;
 bool doesExist; // "bool doesExist" is to check if this Struct exists // 
-This is so we can keep track of the candidates
+//This is so we can keep track of the candidates
 }
 //function getsmartAdd() public view {
 // address smartAddress = address(this);
 //}
-// These state variables are used keep track of the number of 
-Candidates/Voters
+// These state variables are used keep track of the number of Candidates/Voters
 // and used to as a way to index them
 uint numCandidates; // declares a state variable - number Of Candidates
 uint numVoters;
@@ -54,11 +51,10 @@ uint candidateID = numCandidates++;
 // Create new Candidate Struct with name and saves it to storage.
 candidates[candidateID] = Candidate(name,party,0,true);
 }
-function Authorize(address _Voter) // only owner of this cotract can authorize 
-a voter add a modifier
+
+function Authorize(address _Voter) // only owner of this cotract can authorize a voter add a modifier 
 onlyOwner public {
-//Update the boolean value of voter structure by passing the key as voter 
-address to mapping (Voters)
+//Update the boolean value of voter structure by passing the key as voter address to mapping (Voters)
 voters[_Voter].isAuthorized = true;
 }
 function vote(uint candidateID) public {
